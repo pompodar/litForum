@@ -33,7 +33,7 @@ a {
 .inside-article,
 aside:not(#bbp_login_widget-3),
 header:not(.inside-article header),
-footer {
+footer.site-info {
     -webkit-box-shadow: 5px 5px 15px 5px #000000;
     box-shadow: 5px 5px 15px 5px #000000;
     border-radius: 4px;
@@ -140,7 +140,7 @@ header.site-header::after {
 }
 
 .top-bar.top-bar-align-right {
-    background-image: url(http://litforum/wp-content/uploads/2021/10/literaturnyj_forum_header_cover1-scaled.jpg);
+    background-image: url(/wp-content/uploads/2021/10/literaturnyj_forum_header_cover1-scaled.jpg);
     background-size: cover;
     background-position: center;
     height: 300px;
@@ -284,6 +284,10 @@ header.site-header::after {
     width: 147px;
     height: 112px;
     background-image: url(./img/squircle-yellow.svg);
+}
+
+aside#bbp_topics_widget-2 {
+    background-color: transparent;
 }
 
 /* modals */
@@ -915,6 +919,22 @@ input#user_email {
 #forums-personal-li a,
 .subnav li a {
     transition: all 0.5s;
+    position: relative;
+}
+
+#subnav li a {
+    position: relative;
+}
+
+#primary-menu li a::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: translate(-100%, -100%);
+    background-image: url(./img/squircle-green.svg);
+    width: 20px;
+    height: 20px;
 }
 
 #profile-personal-li a:hover,
@@ -936,4 +956,10 @@ td,
 
 .bp-wrap {
     padding: 20px;
+}
+
+#topic-submission-form input {
+    box-shadow: 5px 5px 15px 5px #000000;
+        border-radius: 4px;
+        border: none;
 }

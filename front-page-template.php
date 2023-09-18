@@ -5,23 +5,69 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
     get_header();
+    do_shortcode("[bbp-topic-form]")
 ?>
+
 
 <div <?php generate_do_attr( 'content' ); ?>>
     <main <?php generate_do_attr( 'main' ); ?>>
         <?php
 
+
+
+// Create a new WP_Query instance
+$args = array(
+    'post_type' => 'topic', // Change 'post' to your custom post type if needed
+    //'meta_key' => 'bbp_voting_ups',
+    //  'orderby' => 'meta_value_num',
+    'order' => 'DESC',
+    'posts_per_page' => 10
+);
+
+$query = new WP_Query($args);
+
+// Check if there are any posts
+if ($query->have_posts()) {
+    $data = array();
+
+    while ($query->have_posts()) {
+        $query->the_post();
+        $post_id = get_the_ID();
+        $grade = get_post_meta($post_id, 'bbp_voting_ups', true);
+        // Create an associative array with post_id and grade
+        $data[] = array(
+            'post_id' => $post_id,
+            'grade' => $grade
+        );
+    }
+
+    // Reset post data
+    wp_reset_postdata();
+
+    // Now, $data contains the results as an array of associative arrays.
+    // You can iterate through $data to access the data as needed.
+} else {
+    // No posts found
+}
+
+// Your data processing logic here
+foreach ($data as $row) {
+    $post_id = $row['post_id'];
+    $grade = $row['grade'];
+
+    // Process each row of data here.
+}
+
 define('DB_SERVER', 'localhost');
-   define('DB_USERNAME', 'mysql');
-   define('DB_PASSWORD', 'mysql');
-   define('DB_DATABASE', 'litForum');
+   define('DB_USERNAME', DB_USER);
+   define('DB_PASSWORD', DB_PASSWORD);
+   define('DB_DATABASE', DB_NAME);
    $db = mysqli_connect(DB_SERVER,DB_USERNAME,DB_PASSWORD,DB_DATABASE);
 
     $query = "SELECT post_id, max(meta_value) AS grade 
  FROM wp_postmeta
  WHERE `meta_key` = 'bbp_voting_ups'
  GROUP BY post_id 
- ORDER BY meta_value DESC 
  LIMIT 10";
 
 
@@ -75,7 +121,7 @@ echo '<article class="rellax" data-rellax-speed="1"><div class="inside-article">
  
 _END;
 
-   $db->close();
+//    $db->close();
 ?>
     </main>
 </div>

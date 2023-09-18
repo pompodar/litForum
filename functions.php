@@ -96,5 +96,32 @@ add_action( 'generate_credits', 'generate_add_footer_info', 15 );
 
 	add_filter('xoo_el_login_fields', 'login_modifier');
 
-
+//BBpress New Topic Button // 
+add_shortcode('wpmu_bbp_topic', 'wpmu_bbp_create_new_topic', 10);
+function wpmu_bbp_create_new_topic(){
 	
+	if ( isset($_GET['ForumId']) ){
+		
+		return do_shortcode("[bbp-topic-form forum_id=".$_GET['ForumId']."]");
+		
+	}else{
+		
+		return do_shortcode("[bbp-topic-form]");
+		
+	}
+}
+	function custom_menu_item_filter($items, $args) {
+        if (is_user_logged_in()) {
+            // User is logged in, add the menu item
+            $menu_item = '<li class="menu-item"><a href="/forums/forum/usi-tvorinnya/#new-topic-0">поділитися власним творінням</a></li>';
+            $items .= $menu_item;
+        }
+    return $items;
+}
+add_filter('wp_nav_menu_items', 'custom_menu_item_filter', 2, 2);
+
+function custom_logout_redirect() {
+    wp_redirect(home_url()); // Redirect to the homepage
+    exit;
+}
+add_action('wp_logout', 'custom_logout_redirect');
