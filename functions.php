@@ -126,4 +126,4 @@ function custom_logout_redirect() {
 }
 add_action('wp_logout', 'custom_logout_redirect');
 
-// no redirect
+// no redirect at all
