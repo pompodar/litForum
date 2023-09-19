@@ -126,12 +126,4 @@ function custom_logout_redirect() {
 }
 add_action('wp_logout', 'custom_logout_redirect');
 
-function custom_redirect_home_to_specific_page() {
-    // Check if you are on the home page
-    if (is_front_page() && !is_paged()) {
-        // Redirect to a specific page
-        wp_redirect(home_url('/shedevry/'));
-        exit;
-    }
-}
-add_action('template_redirect', 'custom_redirect_home_to_specific_page');
+// no redirect
