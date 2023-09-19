@@ -30,4 +30,12 @@ jQuery(document).ready(function () {
         jQuery("html, body").animate({ scrollTop: "800px" }, 1000); // You can adjust the animation speed (e.g., 500 milliseconds)
     }
 
+    if (jQuery("#members-all a")) {
+ const text = jQuery("#members-all a").text().replace("All Members", "Усіх: ");
+ jQuery("#members-all a").text(text);
+
+    jQuery("#dir-members-search").attr("placeholder", "шукати учасника");
+
+    }
+   
 });
