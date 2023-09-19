@@ -35,7 +35,8 @@ jQuery(document).ready(function () {
  jQuery("#members-all a").text(text);
 
     jQuery("#dir-members-search").attr("placeholder", "шукати учасника");
-
+        const text2 = jQuery(".entry-title").text().replace("Members", "Учасники");
+        jQuery(".entry-title").text(text2);
     }
    
 });
