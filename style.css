@@ -970,3 +970,13 @@ td,
 #wpforms-submit-133 {
     background-color: #000000;
 }
+
+@media (max-width: 768px) {
+    .inside-article svg {
+        opacity: 0.3
+    }
+
+    .modal-login, .modal-register {
+        width: 320px;
+    }
+}
