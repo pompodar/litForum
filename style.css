@@ -980,3 +980,22 @@ td,
         width: 320px;
     }
 }
+
+button.full-width.has-padding {
+    background-color: black;
+}
+
+.fieldset.fieldset--terms {
+    display: none;
+}
+
+input {
+    border: none;
+    outline: none !important;
+}
+
+.lrm-nice-checkbox__indicator {
+    background-color: black !important;
+    outline: black;
+    border: none;
+}

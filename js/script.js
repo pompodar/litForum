@@ -6,7 +6,7 @@ jQuery(document).ready(function () {
     });
 
     jQuery(".registration-menu").on("click", function () {
-        jQuery(".modal-register").removeClass("hide");
+        //jQuery(".modal-register").removeClass("hide");
     });
 
     jQuery(".close-button.modal").on("click", function () {

@@ -24,8 +24,8 @@ wp_enqueue_script('rellax-js', get_stylesheet_directory_uri() . '/js/rellax.js',
 add_filter( 'wp_nav_menu_items', 'rkk_add_auth_links', 10 , 2 );
 function rkk_add_auth_links( $items, $args ) {
  if ( !is_user_logged_in() ) {
-	 $items .= "<li><a class='login-in-menu'>увійти</a></li>";
-	 $items .= "<li><a class='registration-menu''>заєструватися</a></li>";
+	 $items .= "<li><a class='lrm-hide-if-logged-in lrm-login'>увійти</a></li>";
+	 $items .= "<li><a class='lrm-hide-if-logged-in lrm-register'>заєструватися</a></li>";
   }
   $items .= "<li><a class='faq-menu'>контакти</a></li>";
  return $items;
