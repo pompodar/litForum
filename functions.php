@@ -24,8 +24,7 @@ wp_enqueue_script('rellax-js', get_stylesheet_directory_uri() . '/js/rellax.js',
 add_filter( 'wp_nav_menu_items', 'rkk_add_auth_links', 10 , 2 );
 function rkk_add_auth_links( $items, $args ) {
  if ( !is_user_logged_in() ) {
-	 $items .= "<li><a class='lrm-hide-if-logged-in lrm-login'>увійти</a></li>";
-	 $items .= "<li><a class='lrm-hide-if-logged-in lrm-register'>заєструватися</a></li>";
+	 $items .= "<li><a href='/login'>увійти або зареєструватися</a></li>";
   }
   $items .= "<li><a class='faq-menu'>контакти</a></li>";
  return $items;
@@ -126,4 +125,18 @@ function custom_logout_redirect() {
 }
 add_action('wp_logout', 'custom_logout_redirect');
 
-// no redirectus
+function custom_login_logo() {
+    echo '<style type="text/css">
+	    body {
+			background-color: white !important;
+		}
+			
+        #login h1 a, .login h1 a {
+            background-image: url(' . get_stylesheet_directory_uri() . '/img/cropped-—pngtree—feather-pen-write-sign-logo_4775109.png);
+            width: 100%;
+            background-size: contain;
+        }
+    </style>';
+}
+
+add_action('login_enqueue_scripts', 'custom_login_logo');
